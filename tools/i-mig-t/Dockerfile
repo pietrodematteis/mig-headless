@@ -21,6 +21,9 @@ RUN wget -O firefox.tar.bz2 'https://download-installer.cdn.mozilla.net/pub/fire
 	tar xvf firefox.tar.bz2 -C /opt/ &&\
 	ln -s /opt/firefox/firefox /usr/bin/firefox
 
+# Set environment variable to run Firefox in headless mode
+ENV MOZ_HEADLESS=1
+
 # Copy burp config
 COPY ./config/burp/project-options.json /opt/BurpSuiteCommunity/
 COPY ./config/burp/user-options.json /opt/BurpSuiteCommunity/
@@ -32,8 +35,14 @@ RUN yes | /opt/BurpSuiteCommunity/BurpSuiteCommunity --user-config-file=user-opt
 # magic to avoid Docker caching the file even if they change
 ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
 
+# Copy mig-t plugin into root
 COPY ./mig-t-beta-jar-with-dependencies.jar /root/
-COPY ./config/mig-t/config.json /opt/BurpSuiteCommunity/
+
+# Copy message definitions and mig-t configurations into home
+# COPY ../../testplans/spid-cie-oidc/implementations/spid-cie-oidc-django/config/mig-t/msg_def.json /
+COPY ./config/mig-t/msg_def.json /
+COPY ./config/mig-t/config.json /
 
 # Start configuration
-CMD ["./opt/BurpSuiteCommunity/BurpSuiteCommunity", "--user-config-file=user-options.json", "--config-file=project-options.json"]
+# To disable headless mode remove -Djava.awt.headless=true
+CMD ["java", "-Djava.awt.headless=true", "-jar", "/opt/BurpSuiteCommunity/burpsuite_community.jar", "--user-config-file=/opt/BurpSuiteCommunity/user-options.json", "--config-file=/opt/BurpSuiteCommunity/project-options.json"]
