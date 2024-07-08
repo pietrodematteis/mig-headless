@@ -43,6 +43,9 @@ COPY ./mig-t-beta-jar-with-dependencies.jar /root/
 COPY ./config/mig-t/msg_def.json /
 COPY ./config/mig-t/config.json /
 
-# Start configuration
+# Start configuration in headless mode
 # To disable headless mode remove -Djava.awt.headless=true
-CMD ["java", "-Djava.awt.headless=true", "-jar", "/opt/BurpSuiteCommunity/burpsuite_community.jar", "--user-config-file=/opt/BurpSuiteCommunity/user-options.json", "--config-file=/opt/BurpSuiteCommunity/project-options.json"]
+CMD ["java", "-Djava.awt.headless=true", "-jar", \
+"/opt/BurpSuiteCommunity/burpsuite_community.jar", \
+"--user-config-file=/opt/BurpSuiteCommunity/user-options.json", \
+"--config-file=/opt/BurpSuiteCommunity/project-options.json"]
