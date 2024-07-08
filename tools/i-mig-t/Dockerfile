@@ -30,7 +30,7 @@ COPY ./config/burp/user-options.json /opt/BurpSuiteCommunity/
 
 # Preconfigure BurpSuite
 # TO ENABLE DEBUGGER, COMMENT THIS
-RUN yes | /opt/BurpSuiteCommunity/BurpSuiteCommunity --user-config-file=user-options.json --config-file=project-options.json
+RUN y | /opt/BurpSuiteCommunity/BurpSuiteCommunity --user-config-file=user-options.json --config-file=project-options.json
 
 # magic to avoid Docker caching the file even if they change
 ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
