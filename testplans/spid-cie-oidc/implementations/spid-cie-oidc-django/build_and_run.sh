@@ -18,6 +18,6 @@ cd ../../testplans/spid-cie-oidc/implementations/spid-cie-oidc-django/spid-cie-o
 # local build i-mig-t --------
 
 xhost +local:
-sudo docker compose up --remove-orphans
+sudo docker compose up -d --remove-orphans
 wait
 xhost -local:
