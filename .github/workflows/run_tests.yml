@@ -54,6 +54,7 @@ jobs:
       run: |
         docker network ls
         docker run -d --rm --network spid-cie-oidc-django_oidcfed --name helper webratio/httpd-with-curl:2.4.29
+        curl -m 30 -X POST http://localhost:3000/users
 
     - name: Run script to send API test requests
       run: |
@@ -61,16 +62,14 @@ jobs:
         chmod +x run_tests.sh
         docker exec helper ls -la /
         docker cp run_tests.sh helper:/run_tests.sh
-        docker cp session1.txt helper:/session1.txt
-        docker cp test1.txt helper:/test1.txt
         docker exec helper ls -la /
-        docker exec helper /run_tests.sh /session1.txt /test1.txt
+        docker exec helper /run_tests.sh /test1.json
         docker exec helper ls -la /
-        docker cp helper:/output.txt output.txt
+        docker cp helper:/output.json output.json
         docker stop helper
 
     - name: Upload test results
       uses: actions/upload-artifact@v2
       with:
         name: output.txt
-        path: testplans/spid-cie-oidc/implementations/spid-cie-oidc-django/output.txt
+        path: testplans/spid-cie-oidc/implementations/spid-cie-oidc-django/output.json
