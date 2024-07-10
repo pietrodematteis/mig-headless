@@ -54,7 +54,6 @@ jobs:
       run: |
         docker network ls
         docker run -d --rm --network spid-cie-oidc-django_oidcfed --name helper webratio/httpd-with-curl:2.4.29
-        curl -m 30 -X POST http://localhost:3000/users
 
     - name: Run script to send API test requests
       run: |
