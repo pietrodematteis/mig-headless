@@ -26,7 +26,7 @@ jobs:
 
     - name: Set up Docker repository
       run: |
-        sudo apt-get update && sudo apt-get install -y sudo git x11-xserver-utils curl ca-certificates lsb-release
+        sudo apt-get update && sudo apt-get install -y sudo git x11-xserver-utils curl ca-certificates lsb-release jq
         sudo mkdir -p /etc/apt/keyrings
         curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo tee /etc/apt/keyrings/docker.asc
         sudo chmod a+r /etc/apt/keyrings/docker.asc
