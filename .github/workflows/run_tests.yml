@@ -26,7 +26,7 @@ jobs:
 
     - name: Set up Docker repository
       run: |
-        sudo apt-get update && sudo apt-get install -y sudo git x11-xserver-utils curl ca-certificates lsb-release jq dos2unix
+        sudo apt-get update && sudo apt-get install -y sudo git x11-xserver-utils curl ca-certificates lsb-release
         sudo mkdir -p /etc/apt/keyrings
         curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo tee /etc/apt/keyrings/docker.asc
         sudo chmod a+r /etc/apt/keyrings/docker.asc
@@ -53,7 +53,7 @@ jobs:
     - name: Run a Docker image containing curl in the same network as I-MIG-T
       run: |
         docker network ls
-        docker run -d --rm --network spid-cie-oidc-django_oidcfed --name helper webratio/httpd-with-curl:2.4.29
+        docker run -d --rm --network spid-cie-oidc-django_oidcfed --name helper badouralix/curl-jq
 
     - name: Run script to send API test requests
       run: |
