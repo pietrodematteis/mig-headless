@@ -60,7 +60,6 @@ jobs:
         cd testplans/spid-cie-oidc/implementations/spid-cie-oidc-django/
         chmod +x run_tests.sh
         docker exec helper ls -la /
-        docker exec helper apt-get update && apt-get install -y jq
         docker cp run_tests.sh helper:/run_tests.sh
         docker cp test1.json helper:/test1.json
         docker exec helper ls -la /
