@@ -62,7 +62,6 @@ jobs:
         docker cp run_tests.sh helper:/run_tests.sh
         docker cp test1.json helper:/test1.json
         docker exec helper ls -la /
-        docker exec helper apt-get install -y jq
         docker exec helper /run_tests.sh /test1.json
         docker exec helper ls -la /
         docker cp helper:/output.json output.json
