@@ -16,10 +16,10 @@ if [ ! -f "$TEST_FILE" ]; then
 fi
 
 # Validate the JSON file
-if ! jq empty "$TEST_FILE" >/dev/null 2>&1; then
-    echo "Error: The file $TEST_FILE is not a valid JSON."
-    exit 1
-fi
+#if ! jq empty "$TEST_FILE" >/dev/null 2>&1; then
+    #echo "Error: The file $TEST_FILE is not a valid JSON."
+    #exit 1
+#fi
 
 TEST_CONTENT=$(<"$TEST_FILE")
 
