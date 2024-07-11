@@ -27,6 +27,7 @@ jobs:
     - name: Set up Docker repository
       run: |
         sudo apt-get update && sudo apt-get install -y sudo git x11-xserver-utils curl ca-certificates lsb-release jq dos2unix
+        jq --version
         sudo mkdir -p /etc/apt/keyrings
         curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo tee /etc/apt/keyrings/docker.asc
         sudo chmod a+r /etc/apt/keyrings/docker.asc
@@ -59,9 +60,8 @@ jobs:
       run: |
         cd testplans/spid-cie-oidc/implementations/spid-cie-oidc-django/
         chmod +x run_tests.sh
-        docker exec helper ls -la /
         docker cp run_tests.sh helper:/run_tests.sh
-        jq empty test1.json
+        jq --version
         docker cp test1.json helper:/test1.json
         docker exec helper ls -la /
         docker exec helper /run_tests.sh /test1.json
