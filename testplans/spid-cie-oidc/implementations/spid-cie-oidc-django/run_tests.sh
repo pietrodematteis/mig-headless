@@ -41,7 +41,7 @@ fi
 echo "Sessions:"
 for SESSION in $SESSIONS; do
     echo "Session: $SESSION"
-    SESSION_FILE="./input/mig-t/sessions/$SESSION"
+    SESSION_FILE="/input/mig-t/sessions/$SESSION"
     if [ -f "$SESSION_FILE" ]; then
         SESSION_CONTENT=$(<"$SESSION_FILE")
         echo "Content of $SESSION:"
