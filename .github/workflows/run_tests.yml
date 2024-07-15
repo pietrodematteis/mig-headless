@@ -57,7 +57,7 @@ jobs:
 
     - name: Run script to send API test requests
       run: |
-        docker exec -it helper curl http://burpsuite:3000
+        docker exec helper curl http://burpsuite:3000
         docker exec helper jq --version
         cd testplans/spid-cie-oidc/implementations/spid-cie-oidc-django/
         chmod +x run_tests.sh
