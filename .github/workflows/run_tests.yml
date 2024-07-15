@@ -59,17 +59,10 @@ jobs:
       run: |
         cd testplans/spid-cie-oidc/implementations/spid-cie-oidc-django/
         chmod +x run_tests.sh
-        #docker exec helper ls -la /
         docker cp run_tests.sh helper:/run_tests.sh
-        docker exec helper ls -la
-        docker exec helper "jq --version"
-        docker exec helper "curl https://www.google.com"
-        # docker cp input helper:/input
-        # docker cp test1.json helper:/test1.json
-        # docker exec helper ls -la /
-        # docker exec helper /run_tests.sh /test1.json
-        # docker exec helper ls -la /
-        # docker cp helper:/output.json output.json
+        docker exec helper ls -la /
+        docker exec helper jq --version
+        docker exec helper curl https://www.google.com
         docker stop helper
 
     - name: Upload test results
