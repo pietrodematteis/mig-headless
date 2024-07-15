@@ -57,6 +57,7 @@ jobs:
 
     - name: Run script to send API test requests
       run: |
+        docker exec helper jq --version
         cd testplans/spid-cie-oidc/implementations/spid-cie-oidc-django/
         chmod +x run_tests.sh
         docker exec helper ls -la /
